@@ -1,0 +1,65 @@
+[tool.poetry]
+name = "example-repo"
+version = "0.1.0"
+description = "Example"
+authors = ["sven <sven@so36.net>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+isort = "^5.10.1"
+pytest = "^7.0.1"
+pylint = "^2.12.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''
+
+[tool.isort]
+profile = "black"
+skip = [".gitignore", ".dockerignore"]
+line_length = 100
+
+# pyproject.toml
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
+]
+
+[tool.pylint.'FORMAT']
+ignore-long-lines = ['^\s*(# )?<?https?://\S+>?$']
+indent-after-paren = 4
+indent-string = '    '
+max-line-length = 100
+max-module-lines = 1000
+no-space-check = ['trailing-comma,dict-separator']
+single-line-class-stmt = ['no']
+single-line-if-stmt = ['no']
+
