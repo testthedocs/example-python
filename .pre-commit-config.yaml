@@ -4,3 +4,4 @@ repos:
   hooks:
     - id: python-black
     - id: python-isort
+    - id: markdown-lint
